@@ -1,0 +1,44 @@
+@import url("./tokens.css");
+
+/* Reset simples */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--color-bg-light);
+  color: var(--color-text-light);
+  transition: background var(--transition), color var(--transition);
+}
+
+body.dark {
+  background: var(--color-bg-dark);
+  color: var(--color-text-dark);
+}
+
+body.dark .product-card {
+  background: #333;
+  color: #fff;
+  border-color: #555;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+/* Classe utilitária para foco visível */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+button:active {
+  transform: scale(0.97); /* leve “pressionada” */
+  opacity: 0.9; /* escurece um pouco */
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}

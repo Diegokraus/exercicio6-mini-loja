@@ -1,4 +1,3 @@
-// src/App.jsx
 import { useEffect, useMemo, useState } from "react";
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import { light, dark } from "./theme";
@@ -6,10 +5,8 @@ import { PRODUCTS } from "./data/products";
 import Navbar from "./components/Navbar";
 import ProductCard from "./components/ProductCard";
 
-// tokens importados apenas para fallback (não obrigatório, themes já contém tokens)
 import { tokens } from "./tokens";
 
-/* Global styles (usa theme) */
 const GlobalStyle = createGlobalStyle`
   * { box-sizing: border-box; }
   html, body, #root { height: 100%; }
@@ -40,7 +37,6 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-/* Grid responsivo com breakpoints exatos */
 const Grid = styled.div`
   padding: 20px;
   max-width: 1300px;
@@ -60,14 +56,12 @@ const Grid = styled.div`
   }
 `;
 
-/* Wrapper para cada card para garantir foco e layout consistente */
 const CardWrapper = styled.div`
   display: block;
   min-height: 320px; /* evita layout shift quando skeleton */
 `;
 
 export default function App() {
-  // tema persistido
   const [themeName, setThemeName] = useState(() => {
     try {
       return localStorage.getItem("ml-theme") || "light";
@@ -86,13 +80,11 @@ export default function App() {
     } catch {}
   }, [themeName]);
 
-  // estado do carrinho (simples)
   const [cart, setCart] = useState([]);
 
-  // loading (skeleton) — simula atraso sem layout shift
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 900); // ~900ms como sugerido
+    const t = setTimeout(() => setLoading(false), 900);
     return () => clearTimeout(t);
   }, []);
 

@@ -1,43 +1,40 @@
 import React from "react";
-import styles from "../styles/Navbar.module.css";
-import { useTheme } from "../../context/ThemeContext";
+import styles from "./Navbar.module.css";
 
-export default function Navbar({ cartCount = 0 }) {
-  const { theme, toggleTheme } = useTheme();
-
+export default function Navbar({ theme, toggleTheme, cartCount = 0 }) {
   return (
-    <header className={styles.navbar} role="banner">
-      <div className={styles.brand}>
-        <span className={styles.title}>Mini Loja</span>
+    <header className={styles.nav} role="banner">
+      <div className={styles.left}>
+        <a href="#grid" className={styles.logo} aria-label="Ir para produtos">
+          Mini Loja
+        </a>
       </div>
 
-      <nav className={styles.controls} aria-label="Controles">
+      <div className={styles.right}>
         <button
-          className={styles.themeToggle}
           onClick={toggleTheme}
+          aria-label="Alternar tema"
           aria-pressed={theme === "dark"}
-          aria-label="Alternar tema claro/escuro"
+          className={styles.themeBtn}
         >
           {theme === "dark" ? "🌙" : "☀️"}
         </button>
 
-        <button
-          className={styles.cart}
-          aria-label={`Carrinho com ${cartCount} itens`}
+        <div
+          className={styles.cartWrap}
+          aria-live="polite"
+          aria-atomic="true"
+          role="status"
         >
-          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden>
-            <path
-              fill="currentColor"
-              d="M7 4h-2l-1 2h2l3.6 7.59-1.35 2.44A2 2 0 0 0 9 20h10v-2H9.42a.25.25 0 0 1-.24-.15L9.1 17h7.45a2 2 0 0 0 1.8-1.1L21 6H6.21l-.2-1H3V4h4z"
-            />
-          </svg>
-          {cartCount > 0 && (
-            <span className={styles.badge} aria-hidden>
-              {cartCount}
-            </span>
-          )}
-        </button>
-      </nav>
+          <button
+            className={styles.cartBtn}
+            aria-label={`Carrinho com ${cartCount} itens`}
+          >
+            🛒
+            {cartCount > 0 && <span className={styles.badge}>{cartCount}</span>}
+          </button>
+        </div>
+      </div>
     </header>
   );
 }

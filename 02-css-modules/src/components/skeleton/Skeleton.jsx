@@ -1,12 +1,12 @@
-import styles from "./skeleton.module.css";
+import React from "react";
+import styles from "./Skeleton.module.css";
 
 export default function Skeleton() {
   return (
-    <div className={styles.skeleton}>
-      <div className={styles.media}></div>
-      <div className={styles.title}></div>
-      <div className={styles.meta}></div>
-      <div className={styles.actions}></div>
+    <div className={styles.skeletonWrap} aria-hidden="true">
+      <div className={styles.avatar}></div>
+      <div className={styles.row}></div>
+      <div className={styles.rowShort}></div>
     </div>
   );
 }

@@ -1,31 +1,55 @@
-import styles from "./ProductCard.module.css";
+import React from "react";
 import Button from "../Button/Button";
 import Skeleton from "../skeleton/Skeleton";
+import styles from "./ProductCard.module.css";
 
-export default function ProductCard({ product, loading }) {
-  if (loading) return <Skeleton />;
+export default function ProductCard({ product, loading, onAdd }) {
+  if (loading)
+    return (
+      <div className={styles.wrapper}>
+        <Skeleton />
+      </div>
+    );
 
   return (
-    <div className={styles.card} tabIndex={0}>
-      <div className={styles.media}>
-        <img src={product.image} alt={product.title} loading="lazy" />
-        {product.tag && <span className={styles.tag}>{product.tag}</span>}
+    <article
+      className={styles.card}
+      tabIndex="0"
+      aria-labelledby={`title-${product.id}`}
+    >
+      <div className={styles.imageWrapper}>
+        <img
+          src={product.img}
+          alt={product.title}
+          loading="lazy"
+          className={styles.img}
+        />
+        <span className={styles.tag}>{product.tag}</span>
       </div>
 
-      <div className={styles.body}>
-        <div className={styles.title}>{product.title}</div>
+      <div className={styles.info}>
+        <h3 id={`title-${product.id}`} className={styles.title}>
+          {product.title}
+        </h3>
         <div className={styles.meta}>
-          <span className={styles.price}>R$ {product.price.toFixed(2)}</span>
-          <span className={styles.stars}>
+          <div className={styles.price}>R$ {product.price.toFixed(2)}</div>
+          <div className={styles.rating} aria-hidden>
             {"★".repeat(Math.round(product.rating))}
-          </span>
+          </div>
         </div>
         <div className={styles.actions}>
-          <Button variant="solid">Adicionar</Button>
-          <Button variant="outline">Wishlist</Button>
-          <Button variant="ghost">Detalhes</Button>
+          <Button variant="solid" onClick={onAdd}>
+            Adicionar
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() => {}}
+            aria-label={`Detalhes de ${product.title}`}
+          >
+            Detalhes
+          </Button>
         </div>
       </div>
-    </div>
+    </article>
   );
 }

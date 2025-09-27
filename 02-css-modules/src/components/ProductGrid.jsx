@@ -6,7 +6,6 @@ export default function ProductGrid({ products = [], onAdd }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simula atraso para mostrar skeleton
     const t = setTimeout(() => setLoading(false), 900);
     return () => clearTimeout(t);
   }, []);

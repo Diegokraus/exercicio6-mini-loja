@@ -1,59 +1,60 @@
+/* tokens via CSS variables (serão sobrescritas em .dark) */
 .app {
-  padding: 1rem;
   min-height: 100vh;
+  padding-top: 4rem; /* espaço para navbar fixa */
+  --bg: #f7f7fb;
+  --surface: #ffffff;
+  --text: #0b1220;
+  --muted: #5b6770;
+  --border: #e6e9ee;
+  --primary: #2563eb;
+  --shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 200ms ease, color 200ms ease;
 }
 
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--bg-color);
-  padding: 0.75rem 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+/* dark theme */
+.dark {
+  --bg: #0b1020;
+  --surface: #0f1724;
+  --text: #ecf0f6;
+  --muted: #a6b0bb;
+  --border: #1f2937;
+  --primary: #60a5fa;
+  --shadow: 0 6px 20px rgba(2, 6, 23, 0.6);
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: 700;
+/* light explicit (optional) */
+.light {
+  /* já definido em .app */
 }
 
-.themeBtn {
-  padding: 0.4rem 0.6rem;
-  font-size: 1rem;
-  cursor: pointer;
-  background: var(--accent);
-  color: white;
-  border: none;
-  border-radius: var(--radius);
-  margin-right: 0.5rem;
-}
-
-.cartBadge {
-  font-size: 1.2rem;
-}
-
+/* Grid responsivo com breakpoints exatos */
 .grid {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(1, 1fr);
-  margin-top: 1rem;
+  padding: 1rem;
+  margin: 0 auto;
+  max-width: 1300px;
+  grid-template-columns: repeat(1, 1fr); /* ≤480px */
 }
 
+/* 481–768px: 2 cols */
 @media (min-width: 481px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+/* 769–1024px: 3 cols */
 @media (min-width: 769px) {
   .grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
+/* ≥1025px: 4 cols */
 @media (min-width: 1025px) {
   .grid {
     grid-template-columns: repeat(4, 1fr);
